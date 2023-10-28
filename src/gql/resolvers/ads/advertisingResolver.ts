@@ -1,12 +1,12 @@
 import { Container } from 'typedi'
-import { Resolvers } from '../types/typedSchema'
+import { Resolvers } from '../../types/typedSchema'
 
-import { AdvertisingRepository } from '../../repositories/AdvertisingRepository'
-import AdvertisingModel, {Advertising} from '../../db/models/advertising'
+import { AdvertisingRepository } from '../../../repositories/AdvertisingRepository'
+import AdvertisingModel, { Advertising } from '../../../db/models/advertising'
 
-import { ValidationService } from '../../services/ValidationService'
+import { ValidationService } from '../../../services/ValidationService'
 
-import { authenticated } from '../../middleware/authenticated'
+import { authenticated } from '../../../middleware/authenticated'
 
 Container.set('AdvertisingModel', AdvertisingModel)
 
@@ -25,9 +25,9 @@ const advertisingResolvers: Resolvers = {
       if (!isValidPhoneNumber) {
         throw new Error('Phone number is invalid')
       }
-      return advertisingRepository.save({ ...input } as Advertising);
+      return advertisingRepository.save({ ...input } as Advertising)
     })
-  },
-};
+  }
+}
 
-export default advertisingResolvers;
+export default advertisingResolvers

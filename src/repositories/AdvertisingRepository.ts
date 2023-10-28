@@ -1,5 +1,5 @@
-import { Inject, Service } from 'typedi';
-import AdvertisingModel,{ Advertising }  from '../db/models/advertising';
+import { Inject, Service } from 'typedi'
+import AdvertisingModel, { Advertising } from '../db/models/advertising'
 
 
 @Service()

@@ -3,7 +3,6 @@ import express from 'express'
 import * as http from 'http'
 import { ApolloServer } from '@apollo/server'
 import { typeDefs } from './gql/types'
-import { resolvers } from './gql/resolvers'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 import authController from './controllers/authController'
 import cors from 'cors'
@@ -15,6 +14,7 @@ import { Container } from 'typedi'
 import PartnerModel from './db/models/partner'
 import { SendTokenOverHeaders } from './apolloPlugins'
 import { MainContexter } from './apolloContexters'
+import { resolvers } from './gql/resolvers/index';
 
 dotenv.config()
 

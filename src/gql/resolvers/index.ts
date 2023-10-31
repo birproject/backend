@@ -5,7 +5,8 @@ import advertisingResolvers from './ads/advertisingResolver'
 
 export const resolvers: Resolvers = {
   Query: {
-    ...authenticationResolvers.Query
+    ...authenticationResolvers.Query,
+    ...advertisingResolvers.Query
   },
   Mutation: {
     ...partnerResolvers.Mutation,

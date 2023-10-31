@@ -39,6 +39,7 @@ input LoginInput {
 
 type Query {
     login(input: LoginInput!): Partner
+    getAds: [Ad]
 }
 
 type Mutation {

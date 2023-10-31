@@ -16,7 +16,10 @@ const advertisingRepository = Container.get(AdvertisingRepository)
 
 const advertisingResolvers: Resolvers = {
   Query: {
-    // Add queries for partners
+    async getAds(_parent, _args, _context) {
+      return advertisingRepository.getAllAds()
+    }
+// Add queries for partners
   },
   Mutation: {
     createAd: authenticated(async (_, { input }, context) => {

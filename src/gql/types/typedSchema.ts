@@ -38,6 +38,12 @@ export type AdInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type DeletePartnerInput = {
+  email?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  username?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type LoginInput = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
@@ -46,12 +52,18 @@ export type LoginInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   createAd?: Maybe<Ad>;
+  deletePartner?: Maybe<Scalars['Boolean']['output']>;
   registerPartner?: Maybe<Partner>;
 };
 
 
 export type MutationCreateAdArgs = {
   input?: InputMaybe<AdInput>;
+};
+
+
+export type MutationDeletePartnerArgs = {
+  input?: InputMaybe<DeletePartnerInput>;
 };
 
 
@@ -159,6 +171,7 @@ export type ResolversTypes = {
   Ad: ResolverTypeWrapper<Ad>;
   AdInput: AdInput;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  DeletePartnerInput: DeletePartnerInput;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   LoginInput: LoginInput;
   Mutation: ResolverTypeWrapper<{}>;
@@ -173,6 +186,7 @@ export type ResolversParentTypes = {
   Ad: Ad;
   AdInput: AdInput;
   Boolean: Scalars['Boolean']['output'];
+  DeletePartnerInput: DeletePartnerInput;
   ID: Scalars['ID']['output'];
   LoginInput: LoginInput;
   Mutation: {};
@@ -195,6 +209,7 @@ export type AdResolvers<ContextType = any, ParentType extends ResolversParentTyp
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createAd?: Resolver<Maybe<ResolversTypes['Ad']>, ParentType, ContextType, Partial<MutationCreateAdArgs>>;
+  deletePartner?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, Partial<MutationDeletePartnerArgs>>;
   registerPartner?: Resolver<Maybe<ResolversTypes['Partner']>, ParentType, ContextType, Partial<MutationRegisterPartnerArgs>>;
 };
 

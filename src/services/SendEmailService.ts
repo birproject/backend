@@ -1,13 +1,15 @@
 import { Service } from 'typedi'
 import nodemailer, { Transporter } from 'nodemailer'
 import SMTPTransport from 'nodemailer/lib/smtp-transport'
+import * as dotenv from 'dotenv'
 
 
 export type EmailDetails = {
   from: string;
   to: string;
   subject: string;
-  text?: string;  // You can also include 'html' property if you prefer sending HTML emails
+  text?: string;
+  html?: string;
 }
 
 @Service()
@@ -17,9 +19,10 @@ export class SendEmailService {
   #transporterInstance?: Transporter<SMTPTransport.SentMessageInfo>
 
   constructor() {
-    const hasEmailCredentials = !process.env.EMAIL_USER || !process.env.EMAIL_PASS
+    dotenv.config()
+    const hasEmailCredentials = process.env.EMAIL_USER && process.env.EMAIL_PASS
     if (!hasEmailCredentials) {
-      console.log('🤯 SERVICE UNABLE TO SEND EMAILS')
+      console.log('🤯 MISSING CREDENTIALS SERVICE UNABLE TO SEND EMAILS')
       this.isReady = false
     } else {
       this.isReady = true
@@ -45,21 +48,21 @@ export class SendEmailService {
     return pattern.test(email)
   }
 
-
   private initializeTransporterInstance() {
     this.#transporterInstance = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
+      host: 'smtp-relay.brevo.com',
       port: 587,
+      secure: false,
       auth: {
-        user: process.env.EMAIL_USER || '',
-        password: process.env.EMAIL_PASS || ''
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
       }
     } as SMTPTransport.Options)
     this.#transporterInstance.verify().then(() => {
       this.isReady = true
-      console.log('Transporter instance succesfully configured, ready to send emails 🥳')
+      console.log('Transporter instance successfully created, ready to send emails 🥳')
     }).catch((e) => {
-      console.error('Error trying to create transporter instance', e)
+      console.error('🔥🔥🔥🔥Error trying to create transporter instance', e)
       this.isReady = false
     })
   }

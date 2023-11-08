@@ -4,7 +4,7 @@ import * as http from 'http'
 import { ApolloServer } from '@apollo/server'
 import { typeDefs } from './gql/types'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
-import authController from './controllers/authController'
+import routeController from './controllers/routeController'
 import cors from 'cors'
 import { json } from 'body-parser'
 import { expressMiddleware } from '@apollo/server/express4'
@@ -14,7 +14,7 @@ import { Container } from 'typedi'
 import PartnerModel from './db/models/partner'
 import { SendTokenOverHeaders } from './apolloPlugins'
 import { MainContexter } from './apolloContexters'
-import { resolvers } from './gql/resolvers/index';
+import { resolvers } from './gql/resolvers'
 
 dotenv.config()
 
@@ -36,7 +36,7 @@ async function createServer() {
 
   })
   await server.start()
-  app.use('/api', authController)
+  app.use('/api', routeController)
   app.use('/graphql', cors<cors.CorsRequest>(), json(), expressMiddleware(server, {
     context: MainContexter
   }))

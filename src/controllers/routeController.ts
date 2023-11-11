@@ -9,7 +9,9 @@ router.get('/test', (req, res) => {
   res.send('Hello World')
 })
 
-router.get('/services', async (req, res) => serviceController.getServices(req, res))
+router.get('/services', serviceController.getServices)
+// web hook automaticamente refrescar mi registro desde strapi tener full control cms de mis servicios
+router.post('/serviceWebHook', serviceController.addServiceRecord)
 
 
 export default router

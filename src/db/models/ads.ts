@@ -1,18 +1,20 @@
 import mongoose, { Document, Schema } from 'mongoose'
+import { ServiceModel } from './serviceModel'
 
-export type Advertising = {
+export type Ads = {
   title: string,
   description: string,
   location: string,
   phoneNumber: string,
   promoteImage: string,
-  imageList: string[]
+  imageList?: string[],
+  service?: ServiceModel
 }
 
-export interface IAdvertising extends Document, Advertising {
+export interface IAds extends Document, Ads {
 }
 
-const advertisingSchema: Schema = new Schema({
+const adsSchema: Schema = new Schema({
   title: {
     type: String,
     required: true
@@ -20,7 +22,7 @@ const advertisingSchema: Schema = new Schema({
   description: {
     type: String,
     required: true,
-    maxlength: 200,
+    maxlength: 200
   },
   location: {
     type: String,
@@ -44,13 +46,19 @@ const advertisingSchema: Schema = new Schema({
     type: [String],
     required: true
   },
-  // Relationship with the Partner collection. 1 ad belongs to a partner. 
+  // Relationship with the Partner collection. 1 ad belongs to a partner.
   partner: {
     type: Schema.Types.ObjectId,
     ref: 'Partner',
-    required: true,
+    required: true
   },
+  service: {
+    type: Schema.Types.ObjectId, // one-to-one relationship
+    ref: 'Service',
+    required: false,
+    unique: true
+  }
 })
 
-const AdvertisingModel = mongoose.model<IAdvertising>('Advertising', advertisingSchema)
-export default AdvertisingModel
+const AdsModel = mongoose.model<IAds>('Ads', adsSchema)
+export default AdsModel

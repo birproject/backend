@@ -18,4 +18,16 @@ export class ServiceController {
       return res.status(500).json({ error: error.message })
     }
   }
+
+  async addServiceRecord(req: Request, res: Response) {
+    const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
+    const secret = req.headers['x-webhook-secret']
+    if (secret !== WEBHOOK_SECRET) {
+      return res.status(401).send('Unauthorized')
+    }
+    console.log('🔥🔥🔥🔥🔥🔥received an event trying to see whats going on', {
+      body: JSON.stringify(req.body)
+    })
+
+  }
 }

@@ -1,8 +1,8 @@
-import { Service } from 'typedi'
 import { FetchPartnerServicesService } from '../services/fetchPartnerServicesService'
-import { ServiceModel } from '../db/models/Service'
+import { ServiceModel } from '../db/models/serviceModel'
+import { Service } from 'typedi'
 
-//Gateway is the bridge to communicate different external services either Strapi, DataBase or Third party APIS
+// Gateway is the bridge to communicate different external services either Strapi, DataBase or Third party APIS
 @Service()
 export class ServiceGateway {
 

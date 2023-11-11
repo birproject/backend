@@ -1,5 +1,5 @@
 import { Service } from 'typedi'
-import { ServiceModel } from '../db/models/Service'
+import { ServiceModel } from '../db/models/serviceModel'
 import { ServiceGateway } from '../gateways/serviceGateway'
 
 // Action will have the own business model logic, like actions inherent to the business

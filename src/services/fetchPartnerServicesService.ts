@@ -1,7 +1,7 @@
-import { Service } from 'typedi'
 import axios, { AxiosInstance } from 'axios'
-import { ServiceModel } from '../db/models/Service'
+import { ServiceModel } from '../db/models/serviceModel'
 import * as dotenv from 'dotenv'
+import { Service } from 'typedi'
 
 @Service()
 export class FetchPartnerServicesService {

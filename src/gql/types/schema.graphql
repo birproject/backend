@@ -37,6 +37,12 @@ input LoginInput {
     password: String!
 }
 
+input DeletePartnerInput {
+    email: String
+    id: String
+    username: String
+}
+
 type Query {
     login(input: LoginInput!): Partner
     getAds: [Ad]
@@ -44,5 +50,6 @@ type Query {
 
 type Mutation {
     registerPartner(input: PartnerInput): Partner
+    deletePartner(input: DeletePartnerInput): Boolean
     createAd(input: AdInput): Ad
 }

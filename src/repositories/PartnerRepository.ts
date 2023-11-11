@@ -16,4 +16,13 @@ export class PartnerRepository {
   async findByEmail(email: string): Promise<Partner | null> {
     return this.partnerModel.findOne({ email })
   }
+
+  async findBy(criteria: Record<string, any>): Promise<Partner | null> {
+    return this.partnerModel.findOne(criteria)
+  }
+
+  async removeBy(criteria: Record<string, any>): Promise<boolean> {
+    const result = await this.partnerModel.deleteOne(criteria)
+    return result.acknowledged
+  }
 }

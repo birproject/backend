@@ -1,5 +1,6 @@
 import { Service } from 'typedi'
 import { EmailDetails, SendEmailService } from '../services/SendEmailService'
+import { welcomeHTMLMessage } from '../utils/emailCampaigns/emailCampaigns'
 
 @Service()
 export class EmailGateway {
@@ -12,7 +13,8 @@ export class EmailGateway {
     const isValid = this.sendEmailService.isGmailOrHotmail(emailPayload.to)
     console.log('email valid is ', isValid)
     if (isValid) {
-      await this.sendEmailService.sendEmail(emailPayload)
+      const emailMessage = await welcomeHTMLMessage()
+      await this.sendEmailService.sendEmail({ ...emailPayload, html: emailMessage })
       return 'done'
     } else {
       return `error trying to send email from ${emailPayload.from} to ${emailPayload.to}`

@@ -14,9 +14,18 @@ const partnerResolvers: Resolvers = {
   Mutation: {
     registerPartner: async (_: any, { input }) => {
       try {
+        console.log('Attempting to register Partner')
         return await authAction.registerPartner(input)
       } catch (e) {
         console.error('Registration error:', e)
+        throw e
+      }
+    },
+    deletePartner: async (_, { input }) => {
+      try {
+        return await authAction.deletePartner(input)
+      } catch (e) {
+        console.error('Deletion partner error:', e)
         throw e
       }
     }

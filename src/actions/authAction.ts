@@ -26,7 +26,7 @@ export class AuthAction {
       throw new Error('Email not found')
     }
 
-    const isCorrectCredentials = this.hashService.comparePasswords(password, partner.password)
+    const isCorrectCredentials = await this.hashService.comparePasswords(password, partner.password)
     if (!isCorrectCredentials) {
       throw new Error('Password incorrect')
     }

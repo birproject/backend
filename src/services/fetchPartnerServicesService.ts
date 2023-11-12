@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios'
-import { ServiceModel } from '../db/models/serviceModel'
+import { ServiceData } from '../db/models/serviceData'
 import * as dotenv from 'dotenv'
 import { Service } from 'typedi'
 
@@ -18,7 +18,7 @@ export class FetchPartnerServicesService {
     })
   }
 
-  public async fetchServices(): Promise<ServiceModel[]> {
+  public async fetchServices(): Promise<ServiceData[]> {
     try {
       const response = await this.axiosInstance.get('/services')
       return response.data.data.map((item: any) => this.transformToServiceModel(item))
@@ -27,9 +27,9 @@ export class FetchPartnerServicesService {
     }
   }
 
-  private transformToServiceModel(item: any): ServiceModel {
+  private transformToServiceModel(item: any): ServiceData {
     const { name, description, createdAt, updatedAt, publishedAt } = item.attributes
-    return { name, description, createdAt, updatedAt, publishedAt }
+    return { name, description, createdAt, updatedAt, publishedAt, strapiId: item.id }
   }
 
 }

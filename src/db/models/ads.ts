@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose'
-import { ServiceModel } from './serviceModel'
+import { ServiceData } from './serviceData'
 
 export type Ads = {
   title: string,
@@ -8,7 +8,7 @@ export type Ads = {
   phoneNumber: string,
   promoteImage: string,
   imageList?: string[],
-  service?: ServiceModel
+  service?: ServiceData
 }
 
 export interface IAds extends Document, Ads {

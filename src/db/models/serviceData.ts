@@ -1,14 +1,15 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose, { Document, Schema } from 'mongoose'
 
-export type ServiceModel = {
+export type ServiceData = {
   name: string;
   description: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  strapiId: number;
 }
 
-export interface IService extends Document, ServiceModel {
+export interface IService extends Document, ServiceData {
 }
 
 const serviceSchema: Schema = new Schema(
@@ -24,6 +25,11 @@ const serviceSchema: Schema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now
+    },
+    strapiId: {
+      type: Number,
+      required: true,
+      unique: true
     },
     updatedAt: {
       type: Date,

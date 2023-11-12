@@ -19,7 +19,6 @@ const advertisingResolvers: Resolvers = {
     async getAds(_parent, _args, _context) {
       return adsRepository.getAllAds()
     }
-// Add queries for partners
   },
   Mutation: {
     createAd: authenticated(async (_, { input }, context) => {

@@ -5,6 +5,7 @@ import PartnerModel from '../../../db/models/partner'
 import { AuthAction } from '../../../actions/authAction'
 
 Container.set('PartnerModel', PartnerModel)
+
 const authAction = Container.get<AuthAction>(AuthAction)
 
 

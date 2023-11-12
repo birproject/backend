@@ -9,5 +9,6 @@ module.exports = {
   collectCoverage: true,
   moduleNameMapper: {
     '^axios$': require.resolve('axios')
-  }
+  },
+  setupFilesAfterEnv: ['<rootDir>/src/config/jest.setup.ts']
 }

@@ -52,7 +52,7 @@ Fix lint issues automatically
 npm run lint:fix
 ```
 
-![Alt text](image.png)
+![img_1.png](img_1.png)
 
 #### base repository upsertManyRecords example
 

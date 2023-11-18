@@ -15,14 +15,16 @@ import PartnerModel from './db/models/partner'
 import { SendTokenOverHeaders } from './apolloPlugins'
 import { MainContexter } from './apolloContexters'
 import { resolvers } from './gql/resolvers'
+import ServiceModel from './db/models/serviceData'
 
 dotenv.config()
 
 
-function addDependencies() {
+export function addDependencies() {
   // Adding mongo dependency to the IoC container
-  console.log('📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕Registering partern Model dependency')
+  console.log('📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕📕Registering Models dependencies')
   Container.set('PartnerModel', PartnerModel)
+  Container.set('ServicesModel', ServiceModel)
 }
 
 async function createServer() {
@@ -36,7 +38,8 @@ async function createServer() {
 
   })
   await server.start()
-  app.use('/api', routeController)
+
+  app.use('/api', cors(), routeController)
   app.use('/graphql', cors<cors.CorsRequest>(), json(), expressMiddleware(server, {
     context: MainContexter
   }))

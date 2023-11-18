@@ -52,4 +52,22 @@ Fix lint issues automatically
 npm run lint:fix
 ```
 
-![Alt text](image.png)
+![img_1.png](img_1.png)
+
+#### base repository upsertManyRecords example
+
+<hr>
+
+```agsl
+const itemsToUpsert = [
+  {
+    filter: { _id: 'some-id-1' },
+    update: { $set: { name: 'New Name 1', description: 'New Description 1' } }
+  },
+  {
+    filter: { _id: 'some-id-2' },
+    update: { $set: { name: 'New Name 2', description: 'New Description 2' } }
+  },
+  // ... more items
+];
+```

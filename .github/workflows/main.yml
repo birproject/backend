@@ -30,7 +30,7 @@ jobs:
         if: github.actor == 'cristiantorresf' || github.actor == 'birproject'
         uses: pascalgn/automerge-action@v0.14.3
         env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MERGE_METHOD: "squash"
           MERGE_LABELS: "automerge,!work in progress 🔥"
           UPDATE_METHOD: "rebase"

@@ -46,6 +46,7 @@ input DeletePartnerInput {
 type Query {
     login(input: LoginInput!): Partner
     getAds: [Ad]
+    getAd(id: ID!): Ad!
 }
 
 type Mutation {

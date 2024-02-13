@@ -12,15 +12,15 @@ jobs:
     steps:
       - name: Check author
         run: |
-          if [[ "${{ github.actor }}" == "cristianscript" ]]; then
-            echo "Actor is the main author. Proceeding with auto-approval."
+          if [[ "${{ github.actor }}" == "cristianscript" ]] || [[ "${{ github.actor }}" == "birproject" ]]; then
+            echo "Actor is authorized for auto-approval. Proceeding."
           else
-            echo "Actor is not the main author. Merging is blocked."
+            echo "Actor is not authorized. Merging is blocked."
             echo "The actor is ${{ github.actor }}"
             exit 1
           fi
       - name: Auto-approve
-        if: github.actor == 'cristianscript'
+        if: github.actor == 'cristianscript' || github.actor == 'birproject'
         uses: hmarr/auto-approve-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

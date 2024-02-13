@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Check author
         run: |
-          if [[ "${{ github.actor }}" == "cristiantorresf" ]] || [[ "${{ github.actor }}" == "birproject" ]]; then
+          if [[ "${{ github.actor }}" == "cristianscript" ]] || [[ "${{ github.actor }}" == "birproject" ]]; then
             echo "Actor ${{ github.actor }} is super admin and has all the powers to authorized for auto-approval. Proceeding. 😎😎😎😎"
           else
             echo "Actor is not authorized. Merging is blocked."
@@ -20,12 +20,12 @@ jobs:
             exit 1
           fi
       - name: Auto-approve
-        if: github.actor == 'cristiantorresf' || github.actor == 'birproject'
+        if: github.actor == 'cristianscript' || github.actor == 'birproject'
         uses: hmarr/auto-approve-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Auto-merge
-        if: github.actor == 'cristiantorresf' || github.actor == 'birproject'
+        if: github.actor == 'cristianscript' || github.actor == 'birproject'
         uses: pascalgn/automerge-action@v0.14.3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

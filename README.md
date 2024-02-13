@@ -1,7 +1,7 @@
-<h1 align="center">Hexagonal Architecture Typescript Service Skeleton</h1>
+<h1 align="center">Super GraphQL Backend with the best Practices in the World</h1>
 
 <p align="center">
-  Skeleton for new typescript services based on hexagonal architecture
+  Backend prototype for any project potentially Ads Classifiers
 </p>
 
 <p align="center">

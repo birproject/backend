@@ -88,8 +88,14 @@ export type PartnerInput = {
 
 export type Query = {
   __typename?: 'Query';
+  getAd: Ad;
   getAds?: Maybe<Array<Maybe<Ad>>>;
   login?: Maybe<Partner>;
+};
+
+
+export type QueryGetAdArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -222,6 +228,7 @@ export type PartnerResolvers<ContextType = any, ParentType extends ResolversPare
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getAd?: Resolver<ResolversTypes['Ad'], ParentType, ContextType, RequireFields<QueryGetAdArgs, 'id'>>;
   getAds?: Resolver<Maybe<Array<Maybe<ResolversTypes['Ad']>>>, ParentType, ContextType>;
   login?: Resolver<Maybe<ResolversTypes['Partner']>, ParentType, ContextType, RequireFields<QueryLoginArgs, 'input'>>;
 };

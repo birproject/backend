@@ -13,10 +13,10 @@ jobs:
       - name: Check author
         run: |
           if [[ "${{ github.actor }}" == "cristianscript" ]] || [[ "${{ github.actor }}" == "birproject" ]]; then
-            echo "Actor is authorized for auto-approval. Proceeding."
+            echo "Actor ${{ github.actor }} is super admin and has all the powers to authorized for auto-approval. Proceeding. 😎😎😎😎"
           else
             echo "Actor is not authorized. Merging is blocked."
-            echo "The actor is ${{ github.actor }}"
+            echo "The actor ${{ github.actor }} has not permissions only super admins codeowners can have this exclusive privilege 😎"
             exit 1
           fi
       - name: Auto-approve

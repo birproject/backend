@@ -1,5 +1,6 @@
-/* eslint-disable */
-/* tslint:disable */
+/*
+/!* eslint-disable *!/
+/!* tslint:disable *!/
 // @ts-ignore
 
 import Bottle from 'bottlejs'
@@ -61,3 +62,4 @@ const ldClientWrapper = bottle.container.launchDarklyClient.instance()
 ldClientWrapper.featureFlag('some-feature-flag').then((flagValue) => {
   console.log('Feature flag value:', flagValue)
 })
+*/

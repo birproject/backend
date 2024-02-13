@@ -24,11 +24,14 @@ jobs:
         uses: hmarr/auto-approve-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Auto-merge
+
+      - id: automerge
+        name: Auto-merge
         if: github.actor == 'cristiantorresf' || github.actor == 'birproject'
         uses: pascalgn/automerge-action@v0.14.3
-        with:
+        env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          merge-method: squash # You can change this to merge or rebase as you prefer
-          commit-message-pattern: "{{title}} (#{{number}})" # Custom pattern for commit messages
-          # Additional options can be set as needed
+          MERGE_METHOD: "squash"
+          MERGE_LABELS: "automerge,!work in progress 🔥"
+          UPDATE_METHOD: "rebase"
+

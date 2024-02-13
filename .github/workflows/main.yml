@@ -28,9 +28,9 @@ jobs:
       - id: automerge
         name: Auto-merge
         if: github.actor == 'cristiantorresf' || github.actor == 'birproject'
-        uses: pascalgn/automerge-action@v0.14.3
+        uses: pascalgn/automerge-action@v0.16.2
         env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MERGE_METHOD: "squash"
           MERGE_LABELS: "automerge,!work in progress 🔥"
           UPDATE_METHOD: "rebase"

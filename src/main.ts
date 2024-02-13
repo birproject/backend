@@ -27,22 +27,24 @@ export function addDependencies() {
   Container.set('ServicesModel', ServiceModel)
 }
 
+
 async function createServer() {
   const app = express()
   const httpServer = http.createServer(app)
-  const server = new ApolloServer<{ token?: string }>({
+  const server = new ApolloServer({
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), SendTokenOverHeaders()],
     introspection: true
-
   })
   await server.start()
 
   app.use('/api', cors(), routeController)
-  app.use('/graphql', cors<cors.CorsRequest>(), json(), expressMiddleware(server, {
-    context: MainContexter
-  }))
+  // @ts-ignore
+  app.use('/graphql', cors<cors.CorsRequest>(), json(), expressMiddleware(
+    server, {
+      context: MainContexter
+    }))
   const port = process.env.PORT || 4400
 
   await new Promise<void>(() =>

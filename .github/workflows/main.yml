@@ -1,4 +1,4 @@
-name: Auto-Approve
+name: Auto-Approve and Auto-Merge
 
 on:
   pull_request_target:
@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  auto-approve:
+  auto-approve-and-merge:
     runs-on: ubuntu-latest
     steps:
       - name: Check author
@@ -24,3 +24,11 @@ jobs:
         uses: hmarr/auto-approve-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Auto-merge
+        if: github.actor == 'cristianscript' || github.actor == 'birproject'
+        uses: pascalgn/automerge-action@v0.14.3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: squash # You can change this to merge or rebase as you prefer
+          commit-message-pattern: "{{title}} (#{{number}})" # Custom pattern for commit messages
+          # Additional options can be set as needed

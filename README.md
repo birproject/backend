@@ -71,5 +71,4 @@ const itemsToUpsert = [
   // ... more items
 ];
 ```
-
-hey
+This is the best project in the world

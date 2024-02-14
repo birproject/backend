@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/src/main.js",
     "dev": "npm run codegen && tsnd --respawn src/main.ts",
-    "noop": "git commit --allow-empty -m \"Trigger build\"\n",
+    "noop": "git commit --allow-empty --no-verify -m \"Trigger build\"\n",
     "test": "npm run test:unit",
     "test:unit": "NODE_ENV=test jest --coverage --verbose",
     "prepare": "husky install",
